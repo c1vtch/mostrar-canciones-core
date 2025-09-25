@@ -12,6 +12,7 @@ import jakarta.persistence.PreUpdate;
 import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
+import jakarta.validation.constraints.Size;
 
 @Entity
 @Table(name="canciones")
@@ -20,10 +21,19 @@ public class Cancion {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Size(min=5, message="El titulo debe tener al menos 5 caracteres")
     String titulo;
+
+    @Size(min=3, message="Artista debe tener al menos 3 caracteres")
     String artista;
+
+    @Size(min=3, message="Album debe tener al menos 3 caracteres" )
     String album;
+
+    @Size(min=3, message="Genero debe tener al menos 3 caracteres" )
     String genero;
+
+    @Size(min=3, message="Idioma debe tener al menos 3 caracteres" )
     String idioma;
 
     @Temporal(TemporalType.TIMESTAMP)
