@@ -15,5 +15,6 @@
     <p><b>Genero: </b>${cancionPorId.genero}</p>
     <p><b>Idioma: </b>${cancionPorId.idioma}</p>
     <a href="/canciones">Volver a canciones</a>
+    <a href="/canciones/formulario/editar/${cancionPorId.id}"><button>Editar detalles</button></a>
 </body>
 </html>
