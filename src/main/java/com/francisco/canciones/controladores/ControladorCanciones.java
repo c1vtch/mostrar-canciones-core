@@ -2,6 +2,7 @@ package com.francisco.canciones.controladores;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -72,6 +73,12 @@ public class ControladorCanciones {
         }
         cancion.setId(idCancion);
         this.servicioCanciones.actualizarCancion(cancion);
+        return "redirect:/canciones";
+    }
+
+    @DeleteMapping("/canciones/eliminar/{idCancion}")
+    public String procesarEliminarCancion(@PathVariable("idCancion") Long idCancion){
+        this.servicioCanciones.eliminaCancion(idCancion);
         return "redirect:/canciones";
     }
 

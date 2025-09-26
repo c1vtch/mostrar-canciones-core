@@ -16,5 +16,12 @@
     <p><b>Idioma: </b>${cancionPorId.idioma}</p>
     <a href="/canciones">Volver a canciones</a>
     <a href="/canciones/formulario/editar/${cancionPorId.id}"><button>Editar detalles</button></a>
+    
+    <form action="/canciones/eliminar/${cancionPorId.id}" method="POST"> <br>
+        <input type="hidden" name="_method" value="DELETE">
+        <button>
+            eliminar cancion
+        </button>
+    </form>
 </body>
 </html>

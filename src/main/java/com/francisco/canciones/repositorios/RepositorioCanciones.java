@@ -11,4 +11,6 @@ public interface RepositorioCanciones extends CrudRepository<Cancion, Long> {
     List<Cancion> findAll();
 
     Cancion save(Cancion cancion);
+
+    void deleteById(Long id);
 }
