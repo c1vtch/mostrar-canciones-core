@@ -21,7 +21,7 @@
         </div>
         <div>
             <form:label path="artista">Artista: </form:label> <br>
-            <form:input path="artista"/>
+            <form:input path="artista.nombre"/>
             <form:errors path="artista"/>
         </div>
         <div>

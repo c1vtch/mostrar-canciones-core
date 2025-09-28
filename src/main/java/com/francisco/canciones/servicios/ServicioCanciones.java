@@ -33,6 +33,10 @@ public class ServicioCanciones {
         return this.repositorioCanciones.save(nuevaCancion);
     }
 
+    public List<Cancion> findByArtistaId(Long idArtista){
+        return repositorioCanciones.findByArtistaId(idArtista);
+    }
+
     public void eliminaCancion(Long id){
         this.repositorioCanciones.deleteById(id);
     }

@@ -9,5 +9,6 @@
 </head>
 <body>
    <a href="/canciones">ir a canciones</a>
+   <a href="/artistas">ir a artistas</a>
 </body>
 </html>

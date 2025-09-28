@@ -10,7 +10,7 @@
 <body>
     <h1>Detalles de cancion ${cancionPorId.titulo}</h1>
     <p><b>ID: </b>${cancionPorId.id}</p>
-    <p><b>Artista: </b>${cancionPorId.artista}</p>
+    <p><b>Artista: </b>${cancionPorId.artista.nombre} ${cancionPorId.artista.apellido}</p>
     <p><b>Album: </b>${cancionPorId.album}</p>
     <p><b>Genero: </b>${cancionPorId.genero}</p>
     <p><b>Idioma: </b>${cancionPorId.idioma}</p>

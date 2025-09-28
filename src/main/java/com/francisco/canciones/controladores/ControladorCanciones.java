@@ -8,8 +8,11 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import com.francisco.canciones.modelos.Artista;
 import com.francisco.canciones.modelos.Cancion;
+import com.francisco.canciones.servicios.ServicioArtistas;
 import com.francisco.canciones.servicios.ServicioCanciones;
 
 import jakarta.validation.Valid;
@@ -19,11 +22,14 @@ import org.springframework.validation.BindingResult;
 
 @Controller
 public class ControladorCanciones {
+
+    private final ServicioArtistas servicioArtistas;
     @Autowired
     private final ServicioCanciones servicioCanciones;
 
-    public ControladorCanciones(ServicioCanciones servicioCanciones){
+    public ControladorCanciones(ServicioCanciones servicioCanciones, ServicioArtistas servicioArtistas){
         this.servicioCanciones = servicioCanciones;
+        this.servicioArtistas = servicioArtistas;
     }
     @GetMapping("/")
     public String start(){
@@ -42,15 +48,23 @@ public class ControladorCanciones {
     }
 
     @GetMapping("/canciones/formulario/agregar")
-    public String formularioAgregarCanciones(@ModelAttribute("nuevaCancion") Cancion nuevaCancion){
+    public String formularioAgregarCanciones(@ModelAttribute("nuevaCancion") Cancion nuevaCancion,
+                                            Model model){
+                                                
+        model.addAttribute("listaArtistas", this.servicioArtistas.obtenerTodosLosArtistas());
         return "agregarCancion";
     }
     @PostMapping("/canciones/procesa/agregar")
     public String procesarAgregarCancion(@Valid @ModelAttribute("nuevaCancion") Cancion nuevaCancion,
-                                        BindingResult validations){
+                                        BindingResult validations,
+                                        @RequestParam("idArtista") Long idArtista,
+                                        Model model){
         if(validations.hasErrors()){
+            model.addAttribute("listaArtistas", this.servicioArtistas.obtenerTodosLosArtistas());
             return "agregarCancion";
         }
+        Artista artista = this.servicioArtistas.obtenerArtistaPorId(idArtista);
+        nuevaCancion.setArtista(artista);
         this.servicioCanciones.agregarCancion(nuevaCancion);
         return "redirect:/canciones";
     } 
